@@ -5,6 +5,8 @@
 
 #ifdef WIN32
 #else
+	#include <pthread.h>
+
 	#define memcpy memmove
 
 	typedef unsigned char       BYTE;
@@ -23,6 +25,8 @@
 	#define GetRValue(rgb)      (LOBYTE(rgb))
 	#define GetGValue(rgb)      (LOBYTE(((WORD)(rgb)) >> 8))
 	#define GetBValue(rgb)      (LOBYTE((rgb)>>16))
+
+	DWORD GetCurrentThreadId(){ return pthread_self(); }
 #endif
 
 #define MODUNICODE(x) (x) //<< normal
