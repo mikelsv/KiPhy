@@ -1,57 +1,5 @@
-#include <math.h>
-#include <new>
-
-#ifndef max
-#define max(a,b)    (((a) > (b)) ? (a) : (b))
-#define min(a,b)    (((a) < (b)) ? (a) : (b))
-#endif
-
-#ifndef PI
-#define PI          3.1415926535897932  /* pi */
-#endif
-
-#include "ki_var.h"
 #include "ki_com.h"
-
-// OMatrixTemplates //
-
-// Add to end (_p, _n);
-#define OMatrixTemplateAdd(_a, _e, el)				\
-	if(!_a){ _a=el; _e=el; el->_p=0; el->_n=0; }		\
-	else {	el->_n=0; el->_p=_e; _e->_n=el; _e=el; }
-
-// Add to end (only _n);
-#define OMatrixTemplateAddO(_a, _e, el)				\
-	if(!_a){ _a=el; _e=el; el->_n=0; }				\
-	else {	el->_n=0; _e->_n=el; _e=el; }
-
-// Add to end (Set _p, _n name);
-#define OMatrixTemplateAddF(_a, _e, el, _p, _n)			\
-	if(!_a){ _a=el; _e=el; el->_p=0; el->_n=0; }			\
-	else {	el->_n=0; el->_p=_e; _e->_n=el; _e=el; }
-
-// Add to before p;
-#define OMatrixTemplateAddP(_a, _e, p, el)				\
-	if(!_a){ _a=el; _e=el; el->_p=0; el->_n=0; }			\
-	else if(!p){										\
-		el->_p=0; el->_n=_a; _a->_p=el; _a=el;			\
-	} else {											\
-		el->_p=p; el->_n=p->_n;							\
-		p->_n=el; if(el->_n) el->_n->_p=el; else _e=el;	\
-	}
-
-// Del
-#define OMatrixTemplateDel(_a, _e, el)								\
-	if(el->_n) el->_n->_p=el->_p; else if(el==_e) _e=el->_p;		\
-	if(el->_p) el->_p->_n=el->_n; else if(el==_a) _a=el->_n;
-
-#define OMatrixTemplateDelF(_a, _e, el, _p, _n)						\
-	if(el->_n) el->_n->_p=el->_p; else if(el==_e) _e=el->_p;		\
-	if(el->_p) el->_p->_n=el->_n; else if(el==_a) _a=el->_n;
-
-
-#include "list\AList.h"
-#include "list\OList.h"
+#include "ki_var.h"
 
 #define KI_PHY_POW2(v) ((v) * (v))
 
